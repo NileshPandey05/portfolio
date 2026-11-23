@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 
-export type NavSection = "home" | "project";
+export type NavSection = "home" | "experience" | "project";
 
 interface NavbarProps {
   activeSection?: NavSection;
@@ -10,7 +10,8 @@ interface NavbarProps {
 
 const NAV_ITEMS: { id: NavSection; label: string }[] = [
   { id: "home", label: "Home" },
-  { id: "project", label: "Project" },
+  { id: "experience", label: "Experience" },
+  { id: "project", label: "Projects" },
 ];
 
 // Micro-pixel grid constants inspired by Design-Skill/PixelButton.md
@@ -41,6 +42,7 @@ export function Navbar({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const itemRefs = useRef<Record<NavSection, HTMLButtonElement | null>>({
     home: null,
+    experience: null,
     project: null,
   });
 

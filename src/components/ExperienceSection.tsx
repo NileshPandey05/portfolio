@@ -216,7 +216,11 @@ export function ExperienceSection({
   isDark = true,
 }: ExperienceSectionProps) {
   return (
-    <section aria-labelledby="experience-heading" className="space-y-4">
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="scroll-mt-24 space-y-4"
+    >
       <h2
         id="experience-heading"
         className={`text-xl sm:text-[22px] font-semibold tracking-tight transition-colors duration-300 ${
