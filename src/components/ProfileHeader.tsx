@@ -28,7 +28,8 @@ export function ProfileHeader({
         alt={`${name} profile portrait`}
         decoding="async"
         fetchPriority="high"
-        className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 object-contain select-none"
+        draggable={false}
+        className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 object-contain select-none pointer-events-none"
       />
 
       <div className="min-w-0 leading-tight">
