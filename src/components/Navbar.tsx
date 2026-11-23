@@ -273,7 +273,7 @@ export function Navbar({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative inline-flex items-center p-1 rounded-full overflow-hidden select-none transition-all duration-300"
+      className="relative inline-flex items-center p-[3px] rounded-full overflow-hidden select-none transition-all duration-300"
       style={{
         background: isDark
           ? "rgba(17, 17, 20, 0.62)"
@@ -298,7 +298,7 @@ export function Navbar({
       {/* Spring-physics sliding active pill */}
       <div
         aria-hidden="true"
-        className="absolute top-1 bottom-1 rounded-full pointer-events-none z-1"
+        className="absolute top-[3px] bottom-[3px] rounded-full pointer-events-none z-1"
         style={{
           left: 0,
           width: `${pillStyle.w}px`,
@@ -327,7 +327,7 @@ export function Navbar({
             type="button"
             onClick={(e) => handleSelect(item.id, e)}
             aria-current={isActive ? "page" : undefined}
-            className={`relative z-10 px-4 py-1 rounded-full text-xs font-medium tracking-tight leading-5 transition-colors duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+            className={`relative z-10 px-3.5 py-0.5 rounded-full text-[11px] font-medium tracking-tight leading-4 transition-colors duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
               isActive
                 ? isDark
                   ? "text-white"

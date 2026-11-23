@@ -31,6 +31,8 @@ export interface PixelLensToggleProps {
   onProgress?: (p: number, pageBgColor: string) => void;
   /** Overall pill width in CSS pixels. All geometry scales from the 736x400 reference. */
   size?: number;
+  /** Optional explicit pill height in CSS pixels for slimmer proportions. */
+  height?: number;
   /** Accessible label for screen readers. */
   ariaLabel?: string;
   /** Optional wrapper class name. */
@@ -47,6 +49,7 @@ export function PixelLensToggle({
   onChange,
   onProgress,
   size = REF_W,
+  height,
   ariaLabel = "Toggle day and night world",
   className = "",
 }: PixelLensToggleProps) {
@@ -322,8 +325,8 @@ export function PixelLensToggle({
 
   const scale = size / REF_W;
   const widthPx = Math.round(size);
-  const heightPx = Math.round(REF_H * scale);
-  const insetPx = Math.max(2, Math.round(REF_INSET * scale));
+  const heightPx = height !== undefined ? Math.round(height) : Math.round(REF_H * scale);
+  const insetPx = Math.max(1.5, Math.round(REF_INSET * Math.min(scale, heightPx / REF_H)));
 
   return (
     <div
