@@ -134,6 +134,8 @@ const result = await Bun.build({
     "process.env.NODE_ENV": JSON.stringify("production"),
     "process.env.BUN_PUBLIC_LASTFM_USERNAME": JSON.stringify(process.env.BUN_PUBLIC_LASTFM_USERNAME ?? ""),
     "process.env.BUN_PUBLIC_LASTFM_API_KEY": JSON.stringify(process.env.BUN_PUBLIC_LASTFM_API_KEY ?? ""),
+    "process.env.BUN_PUBLIC_COUNTER_WORKSPACE": JSON.stringify(process.env.BUN_PUBLIC_COUNTER_WORKSPACE ?? ""),
+    "process.env.BUN_PUBLIC_COUNTER_NAME": JSON.stringify(process.env.BUN_PUBLIC_COUNTER_NAME ?? "portfolio"),
   },
   ...cliConfig,
 });

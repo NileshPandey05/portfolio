@@ -1,3 +1,5 @@
+import { Eye } from "lucide-react";
+import { useVisitorCount } from "../hooks/useVisitorCount";
 import type { NavSection } from "./Navbar";
 import { PLATFORM_ICONS, type SocialLink } from "./SocialIcon";
 
@@ -23,6 +25,7 @@ export function Footer({
   isDark = true,
 }: FooterProps) {
   const year = new Date().getFullYear();
+  const { count, isRefreshing, refresh } = useVisitorCount();
 
   const handleNavigate = (item: FooterNavItem) => {
     if (item.navSection) {
@@ -109,9 +112,9 @@ export function Footer({
           </div>
         </div>
 
-        {/* Bottom Hairline & Copyright */}
+        {/* Bottom Hairline, Copyright & Visitor Counter */}
         <div
-          className={`pt-6 border-t transition-colors duration-500 ${
+          className={`pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-colors duration-500 ${
             isDark ? "border-white/10" : "border-neutral-900/10"
           }`}
         >
@@ -122,6 +125,29 @@ export function Footer({
           >
             &copy; {year} {name}. All rights reserved.
           </p>
+
+          <button
+            type="button"
+            onClick={() => void refresh()}
+            title="Total portfolio visits (click to refresh)"
+            aria-label={
+              count !== null
+                ? `${count.toLocaleString()} visitors`
+                : "Visitor count"
+            }
+            className={`inline-flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-1 rounded-full border text-[11.5px] font-mono tabular-nums transition-all duration-200 cursor-pointer ${
+              isDark
+                ? "bg-white/[0.03] border-white/10 text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.07] hover:border-white/20"
+                : "bg-neutral-100/80 border-neutral-200/90 text-neutral-600 hover:text-neutral-900 hover:bg-white hover:border-neutral-300"
+            }`}
+          >
+            <Eye
+              className={`w-3.5 h-3.5 ${isRefreshing ? "animate-pulse" : ""}`}
+            />
+            <span>
+              {count !== null ? count.toLocaleString() : "—"} visitors
+            </span>
+          </button>
         </div>
       </div>
     </footer>
