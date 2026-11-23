@@ -2,10 +2,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "./index.css";
 import profileImg from "./assets/profile.webp";
 import { BioLinks } from "./components/BioLinks";
+import { ExperienceSection } from "./components/ExperienceSection";
+import { Footer } from "./components/Footer";
 import { Navbar, type NavSection } from "./components/Navbar";
 import { PALETTE_HEX, PixelLensToggle } from "./components/PixelLensToggle";
 import { ProfileHeader } from "./components/ProfileHeader";
-import { LAST_PLAYED_SPOTIFY, SOCIAL_LINKS } from "./constants/profile";
+import {
+  EXPERIENCES,
+  FOOTER_NAV_LINKS,
+  LAST_PLAYED_SPOTIFY,
+  SOCIAL_LINKS,
+} from "./constants/profile";
 
 export function App() {
   const [activeSection, setActiveSection] = useState<NavSection>("home");
@@ -62,9 +69,9 @@ export function App() {
       <main className="max-w-2xl mx-auto px-6">
         <section
           id="home"
-          className="min-h-screen flex flex-col justify-between pt-32 sm:pt-36 pb-10"
+          className="pt-32 sm:pt-36 pb-20"
         >
-          <div className="space-y-8">
+          <div className="space-y-9">
             <ProfileHeader
               name="Nilesh Pandey"
               tagline="Engineer · Confused"
@@ -78,20 +85,14 @@ export function App() {
               spotify={LAST_PLAYED_SPOTIFY}
               isDark={isDark}
             />
-          </div>
 
-          <p
-            className={`text-xs sm:text-sm text-center transition-colors duration-500 ${
-              isDark ? "text-neutral-500" : "text-neutral-500"
-            }`}
-          >
-            Minimalistic &amp; tactile interface powered by React, Bun, and Tailwind CSS.
-          </p>
+            <ExperienceSection experiences={EXPERIENCES} isDark={isDark} />
+          </div>
         </section>
 
         <section
           id="project"
-          className={`min-h-screen flex flex-col items-center justify-center text-center space-y-3 border-t transition-colors duration-500 ${
+          className={`min-h-[70vh] flex flex-col items-center justify-center text-center space-y-3 border-t transition-colors duration-500 ${
             isDark ? "border-white/5" : "border-neutral-900/10"
           }`}
         >
@@ -111,6 +112,14 @@ export function App() {
           </p>
         </section>
       </main>
+
+      <Footer
+        name="Nilesh Pandey"
+        navItems={FOOTER_NAV_LINKS}
+        socialLinks={SOCIAL_LINKS}
+        onSelectSection={setActiveSection}
+        isDark={isDark}
+      />
     </div>
   );
 }
