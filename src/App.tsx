@@ -7,17 +7,23 @@ import { Footer } from "./components/Footer";
 import { Navbar, type NavSection } from "./components/Navbar";
 import { PALETTE_HEX, PixelLensToggle } from "./components/PixelLensToggle";
 import { ProfileHeader } from "./components/ProfileHeader";
+import { ProjectsSection } from "./components/ProjectsSection";
 import {
   EXPERIENCES,
   FOOTER_NAV_LINKS,
   LAST_PLAYED_SPOTIFY,
+  PROJECTS,
   SOCIAL_LINKS,
+  TAGLINE_LEFT_WORDS,
+  TAGLINE_RIGHT_WORDS,
 } from "./constants/profile";
+import { useRecentTrack } from "./hooks/useRecentTrack";
 
 export function App() {
   const [activeSection, setActiveSection] = useState<NavSection>("home");
   const [isDark, setIsDark] = useState<boolean>(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const recentTrack = useRecentTrack(LAST_PLAYED_SPOTIFY);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -74,7 +80,8 @@ export function App() {
           <div className="space-y-9">
             <ProfileHeader
               name="Nilesh Pandey"
-              tagline="Engineer · Confused"
+              leftWords={TAGLINE_LEFT_WORDS}
+              rightWords={TAGLINE_RIGHT_WORDS}
               imageSrc={profileImg}
               isDark={isDark}
             />
@@ -82,7 +89,7 @@ export function App() {
             <BioLinks
               description="Building minimal, tactile interfaces and experimenting on the web. Always curious about how things work under the hood."
               links={SOCIAL_LINKS}
-              spotify={LAST_PLAYED_SPOTIFY}
+              spotify={recentTrack}
               isDark={isDark}
             />
 
@@ -90,27 +97,7 @@ export function App() {
           </div>
         </section>
 
-        <section
-          id="project"
-          className={`min-h-[70vh] flex flex-col items-center justify-center text-center space-y-3 border-t transition-colors duration-500 ${
-            isDark ? "border-white/5" : "border-neutral-900/10"
-          }`}
-        >
-          <h2
-            className={`text-3xl font-semibold tracking-tight transition-colors duration-500 ${
-              isDark ? "text-white" : "text-neutral-950"
-            }`}
-          >
-            Projects
-          </h2>
-          <p
-            className={`text-sm sm:text-base max-w-md transition-colors duration-500 ${
-              isDark ? "text-neutral-400" : "text-neutral-600"
-            }`}
-          >
-            Selected works and interactive experiments.
-          </p>
-        </section>
+        <ProjectsSection projects={PROJECTS} isDark={isDark} />
       </main>
 
       <Footer
