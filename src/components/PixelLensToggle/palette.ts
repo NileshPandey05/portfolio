@@ -84,7 +84,7 @@ export function rgbToCss({ r, g, b }: Rgb): string {
 // ============================================================================
 
 export const PALETTE_HEX = {
-  pageDay: "#F3ECDA",
+  pageDay: "#FFFFFF",
   pageDuskMid: "#DED6CB",
   pageGreyMid: "#858488",
   pageNightDusk: "#202334",
