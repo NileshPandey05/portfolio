@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./index.css";
+import profileImg from "./assets/profile.webp";
+import { BioLinks } from "./components/BioLinks";
 import { Navbar, type NavSection } from "./components/Navbar";
 import { PALETTE_HEX, PixelLensToggle } from "./components/PixelLensToggle";
+import { ProfileHeader } from "./components/ProfileHeader";
+import { LAST_PLAYED_SPOTIFY, SOCIAL_LINKS } from "./constants/profile";
 
 export function App() {
   const [activeSection, setActiveSection] = useState<NavSection>("home");
@@ -31,7 +35,7 @@ export function App() {
     >
       {/* Top Bar: max-w-6xl container with Navbar on one side and PixelLensToggle on the other */}
       <header className="fixed top-5 inset-x-0 z-50 pointer-events-none">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-6 flex items-center justify-between">
           <div className="pointer-events-auto">
             <Navbar
               activeSection={activeSection}
@@ -45,7 +49,8 @@ export function App() {
               checked={isDark}
               onChange={setIsDark}
               onProgress={handleToggleProgress}
-              size={78}
+              size={70}
+              height={26}
               ariaLabel={
                 isDark ? "Switch to daylight theme" : "Switch to night theme"
               }
@@ -54,14 +59,30 @@ export function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6">
+      <main className="max-w-2xl mx-auto px-6">
         <section
           id="home"
-          className="min-h-screen flex flex-col items-center justify-center text-center space-y-3 pt-16"
+          className="min-h-screen flex flex-col justify-between pt-32 sm:pt-36 pb-10"
         >
+          <div className="space-y-8">
+            <ProfileHeader
+              name="Nilesh Pandey"
+              tagline="Engineer · Confused"
+              imageSrc={profileImg}
+              isDark={isDark}
+            />
+
+            <BioLinks
+              description="Building minimal, tactile interfaces and experimenting on the web. Always curious about how things work under the hood."
+              links={SOCIAL_LINKS}
+              spotify={LAST_PLAYED_SPOTIFY}
+              isDark={isDark}
+            />
+          </div>
+
           <p
-            className={`text-sm sm:text-base max-w-md transition-colors duration-500 ${
-              isDark ? "text-neutral-400" : "text-neutral-600"
+            className={`text-xs sm:text-sm text-center transition-colors duration-500 ${
+              isDark ? "text-neutral-500" : "text-neutral-500"
             }`}
           >
             Minimalistic &amp; tactile interface powered by React, Bun, and Tailwind CSS.
