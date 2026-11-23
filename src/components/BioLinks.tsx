@@ -10,6 +10,7 @@ export interface SpotifyTrack {
   track: string;
   artist: string;
   href?: string;
+  isPlaying?: boolean;
 }
 
 interface BioLinksProps {
@@ -80,9 +81,18 @@ export function BioLinks({
                 : "text-neutral-500 hover:text-neutral-800"
             }`}
           >
-            <SpotifyLogo />
+            <span className="relative inline-flex items-center justify-center">
+              <SpotifyLogo />
+              {spotify.isPlaying && (
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#1DB954] ring-2 ring-neutral-950 animate-pulse"
+                />
+              )}
+            </span>
             <span>
-              Last played — {spotify.track} · {spotify.artist}
+              {spotify.isPlaying ? "Listening now" : "Last played"} —{" "}
+              {spotify.track} · {spotify.artist}
             </span>
           </a>
         </div>
