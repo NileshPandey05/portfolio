@@ -54,23 +54,14 @@ export function ProjectsSection({
                 : "bg-neutral-50/70 border-neutral-200/80 hover:bg-white hover:border-neutral-300"
             }`}
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-1.5 min-w-0">
-                <h3
-                  className={`text-base sm:text-[17px] font-semibold tracking-tight transition-colors duration-300 ${
-                    isDark ? "text-neutral-100" : "text-neutral-900"
-                  }`}
-                >
-                  {project.name}
-                </h3>
-                <p
-                  className={`text-xs sm:text-[13.5px] leading-relaxed transition-colors duration-300 ${
-                    isDark ? "text-neutral-400" : "text-neutral-600"
-                  }`}
-                >
-                  {project.description}
-                </p>
-              </div>
+            <div className="flex items-center justify-between gap-3">
+              <h3
+                className={`text-base sm:text-[17px] font-semibold tracking-tight truncate transition-colors duration-300 ${
+                  isDark ? "text-neutral-100" : "text-neutral-900"
+                }`}
+              >
+                {project.name}
+              </h3>
 
               <div className="flex items-center gap-1.5 shrink-0">
                 {project.liveUrl && (
@@ -108,6 +99,14 @@ export function ProjectsSection({
                 </a>
               </div>
             </div>
+
+            <p
+              className={`mt-2 text-xs sm:text-[13.5px] leading-relaxed transition-colors duration-300 ${
+                isDark ? "text-neutral-400" : "text-neutral-600"
+              }`}
+            >
+              {project.description}
+            </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
               {project.technologies.map((tech) => (
