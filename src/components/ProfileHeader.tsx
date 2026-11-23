@@ -26,6 +26,8 @@ export function ProfileHeader({
       <img
         src={imageSrc}
         alt={`${name} profile portrait`}
+        width={64}
+        height={64}
         decoding="async"
         fetchPriority="high"
         draggable={false}
