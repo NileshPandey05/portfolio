@@ -15,8 +15,9 @@ interface LastFmTrackResponse {
 }
 
 function getLastFmConfig() {
-  const username = process.env.BUN_PUBLIC_LASTFM_USERNAME?.trim();
-  const apiKey = process.env.BUN_PUBLIC_LASTFM_API_KEY?.trim();
+  const hasProcess = typeof process !== "undefined" && process.env;
+  const username = hasProcess ? process.env.BUN_PUBLIC_LASTFM_USERNAME?.trim() : undefined;
+  const apiKey = hasProcess ? process.env.BUN_PUBLIC_LASTFM_API_KEY?.trim() : undefined;
   return { username, apiKey };
 }
 
